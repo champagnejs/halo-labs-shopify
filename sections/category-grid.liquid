@@ -1,0 +1,175 @@
+{% comment %}
+  Category Grid Section
+  4 category cards in a responsive grid
+{% endcomment %}
+
+{{ 'halo-custom.css' | asset_url | stylesheet_tag }}
+
+<section class="category-grid">
+  <div class="category-grid__container">
+    {% if section.settings.heading != blank %}
+      <h2 class="category-grid__heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+    
+    <div class="category-grid__grid">
+      {% comment %} Category 1: Aesthetic Halo {% endcomment %}
+      {% render 'category-card',
+        title: section.settings.category_1_title,
+        tagline: section.settings.category_1_tagline,
+        collection_url: section.settings.category_1_link,
+        icon: section.settings.category_1_icon
+      %}
+      
+      {% comment %} Category 2: Physical Halo {% endcomment %}
+      {% render 'category-card',
+        title: section.settings.category_2_title,
+        tagline: section.settings.category_2_tagline,
+        collection_url: section.settings.category_2_link,
+        icon: section.settings.category_2_icon
+      %}
+      
+      {% comment %} Category 3: Mental Halo {% endcomment %}
+      {% render 'category-card',
+        title: section.settings.category_3_title,
+        tagline: section.settings.category_3_tagline,
+        collection_url: section.settings.category_3_link,
+        icon: section.settings.category_3_icon
+      %}
+      
+      {% comment %} Category 4: Vitality Halo {% endcomment %}
+      {% render 'category-card',
+        title: section.settings.category_4_title,
+        tagline: section.settings.category_4_tagline,
+        collection_url: section.settings.category_4_link,
+        icon: section.settings.category_4_icon
+      %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Category Grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Explore Our Collections"
+    },
+    {
+      "type": "header",
+      "content": "Category 1: Aesthetic Halo"
+    },
+    {
+      "type": "text",
+      "id": "category_1_title",
+      "label": "Category 1 Title",
+      "default": "Aesthetic Halo"
+    },
+    {
+      "type": "text",
+      "id": "category_1_tagline",
+      "label": "Category 1 Tagline",
+      "default": "Elevate Your Presence"
+    },
+    {
+      "type": "url",
+      "id": "category_1_link",
+      "label": "Category 1 Link"
+    },
+    {
+      "type": "text",
+      "id": "category_1_icon",
+      "label": "Category 1 Icon (Emoji or Unicode)",
+      "default": "✨"
+    },
+    {
+      "type": "header",
+      "content": "Category 2: Physical Halo"
+    },
+    {
+      "type": "text",
+      "id": "category_2_title",
+      "label": "Category 2 Title",
+      "default": "Physical Halo"
+    },
+    {
+      "type": "text",
+      "id": "category_2_tagline",
+      "label": "Category 2 Tagline",
+      "default": "Build Peak Form"
+    },
+    {
+      "type": "url",
+      "id": "category_2_link",
+      "label": "Category 2 Link"
+    },
+    {
+      "type": "text",
+      "id": "category_2_icon",
+      "label": "Category 2 Icon (Emoji or Unicode)",
+      "default": "💪"
+    },
+    {
+      "type": "header",
+      "content": "Category 3: Mental Halo"
+    },
+    {
+      "type": "text",
+      "id": "category_3_title",
+      "label": "Category 3 Title",
+      "default": "Mental Halo"
+    },
+    {
+      "type": "text",
+      "id": "category_3_tagline",
+      "label": "Category 3 Tagline",
+      "default": "Sharpen Your Edge"
+    },
+    {
+      "type": "url",
+      "id": "category_3_link",
+      "label": "Category 3 Link"
+    },
+    {
+      "type": "text",
+      "id": "category_3_icon",
+      "label": "Category 3 Icon (Emoji or Unicode)",
+      "default": "🧠"
+    },
+    {
+      "type": "header",
+      "content": "Category 4: Vitality Halo"
+    },
+    {
+      "type": "text",
+      "id": "category_4_title",
+      "label": "Category 4 Title",
+      "default": "Vitality Halo"
+    },
+    {
+      "type": "text",
+      "id": "category_4_tagline",
+      "label": "Category 4 Tagline",
+      "default": "Optimize Longevity"
+    },
+    {
+      "type": "url",
+      "id": "category_4_link",
+      "label": "Category 4 Link"
+    },
+    {
+      "type": "text",
+      "id": "category_4_icon",
+      "label": "Category 4 Icon (Emoji or Unicode)",
+      "default": "❤️"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Category Grid"
+    }
+  ]
+}
+{% endschema %}

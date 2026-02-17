@@ -1,0 +1,314 @@
+{% comment %}
+  Custom Product Template
+  Alternative product page with tabs and custom payment options
+{% endcomment %}
+
+{{ 'halo-custom.css' | asset_url | stylesheet_tag }}
+{{ 'halo-animations.js' | asset_url | script_tag }}
+{{ 'payment-integration.js' | asset_url | script_tag }}
+
+<article class="product-custom">
+  <div class="product-custom__container">
+    
+    {% comment %} Product Main Section {% endcomment %}
+    <div class="product-custom__grid">
+      
+      {% comment %} Product Images {% endcomment %}
+      <div class="product-custom__images">
+        {% if product.featured_image %}
+          <img 
+            src="{{ product.featured_image | img_url: 'large' }}" 
+            alt="{{ product.featured_image.alt | escape }}"
+            class="product-custom__main-image"
+            loading="eager"
+          >
+        {% else %}
+          <div class="product-custom__image-placeholder">
+            <svg width="600" height="600" xmlns="http://www.w3.org/2000/svg">
+              <rect width="600" height="600" fill="#F8F9FA"/>
+              <text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="#666" font-size="24">Product Image</text>
+            </svg>
+          </div>
+        {% endif %}
+        
+        {% comment %} Product Thumbnails {% endcomment %}
+        {% if product.images.size > 1 %}
+          <div class="product-custom__thumbnails">
+            {% for image in product.images limit: 4 %}
+              <img 
+                src="{{ image | img_url: 'small' }}" 
+                alt="{{ image.alt | escape }}"
+                class="product-custom__thumbnail"
+                loading="lazy"
+              >
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      
+      {% comment %} Product Info {% endcomment %}
+      <div class="product-custom__info">
+        <h1 class="product-custom__title">{{ product.title | escape }}</h1>
+        
+        <div class="product-custom__price">
+          {% if product.compare_at_price > product.price %}
+            <span class="product-custom__price--sale">{{ product.price | money }}</span>
+            <span class="product-custom__price--original">{{ product.compare_at_price | money }}</span>
+          {% else %}
+            <span class="product-custom__price--current">{{ product.price | money }}</span>
+          {% endif %}
+        </div>
+        
+        {% if product.description != blank %}
+          <div class="product-custom__description">
+            {{ product.description }}
+          </div>
+        {% endif %}
+        
+        {% comment %} Variant Selector {% endcomment %}
+        {% unless product.has_only_default_variant %}
+          <div class="product-custom__variants">
+            <label for="product-variants">Select Option:</label>
+            <select id="product-variants" class="product-custom__variant-select">
+              {% for variant in product.variants %}
+                <option 
+                  value="{{ variant.id }}" 
+                  {% if variant.available == false %}disabled{% endif %}
+                >
+                  {{ variant.title }} - {{ variant.price | money }}
+                  {% if variant.available == false %} (Sold Out){% endif %}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+        {% endunless %}
+        
+        {% comment %} Custom Payment Buttons {% endcomment %}
+        <div class="product-custom__payment-buttons">
+          <h3 class="product-custom__payment-title">Select Payment Method:</h3>
+          
+          <button 
+            class="halo-btn product-custom__payment-btn" 
+            data-halo-payment
+            data-product-id="{{ product.id }}"
+            data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+            data-price="{{ product.selected_or_first_available_variant.price | money_without_currency }}"
+            data-product-title="{{ product.title | escape }}"
+            data-product-image="{{ product.featured_image | img_url: 'medium' }}"
+            data-payment-method="stripe"
+          >
+            💳 Pay with Card (Stripe)
+          </button>
+          
+          <button 
+            class="halo-btn product-custom__payment-btn" 
+            data-halo-payment
+            data-product-id="{{ product.id }}"
+            data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+            data-price="{{ product.selected_or_first_available_variant.price | money_without_currency }}"
+            data-product-title="{{ product.title | escape }}"
+            data-product-image="{{ product.featured_image | img_url: 'medium' }}"
+            data-payment-method="crypto"
+          >
+            ₿ Pay with Crypto
+          </button>
+          
+          <button 
+            class="halo-btn product-custom__payment-btn" 
+            data-halo-payment
+            data-product-id="{{ product.id }}"
+            data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+            data-price="{{ product.selected_or_first_available_variant.price | money_without_currency }}"
+            data-product-title="{{ product.title | escape }}"
+            data-product-image="{{ product.featured_image | img_url: 'medium' }}"
+            data-payment-method="bank"
+          >
+            🏦 Bank Transfer
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    {% comment %} Tabbed Information Section {% endcomment %}
+    <div class="product-custom__tabs">
+      <div class="product-custom__tab-buttons">
+        <button class="product-custom__tab-button product-custom__tab-button--active" data-tab="compound-info">
+          Compound Information
+        </button>
+        <button class="product-custom__tab-button" data-tab="research-data">
+          Research Data
+        </button>
+        <button class="product-custom__tab-button" data-tab="purity-report">
+          Purity Report
+        </button>
+        <button class="product-custom__tab-button" data-tab="dosing-info">
+          Dosing Information
+        </button>
+      </div>
+      
+      <div class="product-custom__tab-content product-custom__tab-content--active" data-tab-content="compound-info">
+        <h3>Compound Information</h3>
+        <p>
+          <strong>CAS Number:</strong> [To be added]<br>
+          <strong>Molecular Formula:</strong> [To be added]<br>
+          <strong>Molecular Weight:</strong> [To be added]<br>
+          <strong>Purity:</strong> ≥99% (HPLC)<br>
+        </p>
+        <p>
+          This is a placeholder for detailed compound information. Add specific details about the chemical compound,
+          its properties, and relevant specifications.
+        </p>
+      </div>
+      
+      <div class="product-custom__tab-content" data-tab-content="research-data">
+        <h3>Research Data</h3>
+        <p>
+          <strong>Research Applications:</strong>
+        </p>
+        <ul>
+          <li>Laboratory research only</li>
+          <li>Scientific studies</li>
+          <li>Analytical reference standard</li>
+        </ul>
+        <p>
+          This section should contain references to published research, studies, or scientific literature related 
+          to this compound. Add links to peer-reviewed publications or research findings.
+        </p>
+      </div>
+      
+      <div class="product-custom__tab-content" data-tab-content="purity-report">
+        <h3>Certificate of Analysis (COA)</h3>
+        <p>
+          <strong>Batch Number:</strong> [Batch-specific]<br>
+          <strong>Test Date:</strong> [Date]<br>
+          <strong>Purity:</strong> ≥99.0%<br>
+        </p>
+        <p>
+          Certificate of Analysis documents are available for each batch. Contact us with your batch number to 
+          receive the specific COA for your product.
+        </p>
+        <p>
+          <!-- Placeholder for COA document upload/link -->
+          <a href="#" class="halo-btn">Download COA (PDF)</a>
+        </p>
+      </div>
+      
+      <div class="product-custom__tab-content" data-tab-content="dosing-info">
+        <h3>Dosing Information</h3>
+        <p><strong>⚠️ IMPORTANT NOTICE:</strong></p>
+        <p>
+          This product is sold FOR RESEARCH PURPOSES ONLY. The information below is provided for scientific 
+          reference and should not be interpreted as medical advice or recommendations for human consumption.
+        </p>
+        <p>
+          <strong>Research Reference Doses (from published literature):</strong>
+        </p>
+        <ul>
+          <li>Study dose range: [To be specified]</li>
+          <li>Typical research protocols: [To be specified]</li>
+          <li>Duration in studies: [To be specified]</li>
+        </ul>
+        <p>
+          Always follow your research protocol and institutional guidelines.
+        </p>
+      </div>
+    </div>
+    
+    {% comment %} Research Disclaimer {% endcomment %}
+    <div class="product-custom__disclaimer">
+      <h2 class="product-custom__disclaimer-title">⚠️ FOR RESEARCH PURPOSES ONLY ⚠️</h2>
+      <p class="product-custom__disclaimer-text">
+        <strong>NOT FOR HUMAN CONSUMPTION</strong><br>
+        This product is intended solely for laboratory research and scientific study. It is not intended for 
+        human consumption, therapeutic use, or any application involving human subjects. By purchasing this 
+        product, you acknowledge that you are a qualified researcher or institution and will use this compound 
+        only for legitimate research purposes in accordance with all applicable laws and regulations.
+      </p>
+      <p class="product-custom__disclaimer-text">
+        All products are sold with the understanding that the purchaser is properly trained in handling and 
+        disposal of potentially hazardous chemicals and will use appropriate safety protocols.
+      </p>
+    </div>
+    
+  </div>
+</article>
+
+<style>
+  /* Additional product-specific styles */
+  .product-custom__main-image,
+  .product-custom__image-placeholder {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 16px;
+  }
+  
+  .product-custom__thumbnails {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  
+  .product-custom__thumbnail {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+  
+  .product-custom__thumbnail:hover {
+    border-color: var(--halo-accent);
+  }
+  
+  .product-custom__price {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--halo-accent);
+  }
+  
+  .product-custom__price--sale {
+    color: #E53E3E;
+    margin-right: 12px;
+  }
+  
+  .product-custom__price--original {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 24px;
+  }
+  
+  .product-custom__description {
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+  
+  .product-custom__variants {
+    margin-bottom: 24px;
+  }
+  
+  .product-custom__variant-select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--halo-border);
+    border-radius: 4px;
+    font-size: 16px;
+    margin-top: 8px;
+  }
+  
+  .product-custom__payment-buttons {
+    margin-top: 32px;
+  }
+  
+  .product-custom__payment-title {
+    margin-bottom: 16px;
+  }
+  
+  .product-custom__payment-btn {
+    width: 100%;
+    margin-bottom: 12px;
+    font-size: 18px;
+  }
+</style>
