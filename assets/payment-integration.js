@@ -5,6 +5,10 @@
  * WARNING: This is a placeholder structure only
  * Do NOT use in production without proper implementation
  * Requires backend API integration and security review
+ * 
+ * NOTE: Console statements throughout this file are INTENTIONAL
+ * They serve as documentation and placeholder implementations
+ * Replace with proper logging/error handling when implementing
  */
 
 (function() {

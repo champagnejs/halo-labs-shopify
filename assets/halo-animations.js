@@ -242,7 +242,7 @@
   function setupResponsiveHandlers() {
     const handleResize = debounce(() => {
       // Recalculate any layout-dependent features
-      console.log('Window resized');
+      // Add custom resize logic here if needed
     }, 250);
 
     window.addEventListener('resize', handleResize);
