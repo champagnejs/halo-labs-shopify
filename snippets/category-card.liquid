@@ -1,0 +1,24 @@
+{% comment %}
+  Category Card Snippet
+  Reusable component for category grid
+  
+  Parameters:
+  - title: Category title (string)
+  - tagline: Category tagline/description (string)
+  - collection_url: Link to collection (string)
+  - icon: Icon/emoji for category (string, optional)
+{% endcomment %}
+
+<a href="{{ collection_url }}" class="category-card" aria-label="{{ title }}: {{ tagline }}">
+  <span class="category-card__icon" aria-hidden="true">
+    {% if icon != blank %}
+      {{ icon }}
+    {% else %}
+      ⚗️
+    {% endif %}
+  </span>
+  
+  <h3 class="category-card__title">{{ title }}</h3>
+  
+  <p class="category-card__tagline">{{ tagline }}</p>
+</a>

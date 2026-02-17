@@ -1,0 +1,670 @@
+/**
+ * Halo Labs Custom Styles
+ * Brand: Halo Labs - "Build Your Halo"
+ * Theme: Shopify Dawn Custom
+ */
+
+/* ============================================
+   CSS Custom Properties (Variables)
+   ============================================ */
+:root {
+  /* Brand Colors */
+  --halo-primary: #FFFFFF;
+  --halo-accent: #00F0FF;
+  --halo-text: #0A0A0A;
+  --halo-secondary: #F8F9FA;
+  --halo-border: #E5E5E5;
+  
+  /* Spacing Scale (8px base unit) */
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 32px;
+  --space-xl: 48px;
+  --space-xxl: 64px;
+  
+  /* Typography Scale */
+  --font-size-h1: 48px;
+  --font-size-h2: 36px;
+  --font-size-h3: 24px;
+  --font-size-body: 16px;
+  --font-size-small: 14px;
+  
+  /* Responsive Typography */
+  --font-size-h1-mobile: 32px;
+  --font-size-h2-mobile: 28px;
+  --font-size-h3-mobile: 20px;
+  
+  /* Transitions */
+  --transition-speed: 0.3s;
+  --transition-ease: ease;
+  
+  /* Border Radius */
+  --radius-button: 4px;
+  --radius-card: 8px;
+  
+  /* Shadows */
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-glow-blue: 0 0 20px rgba(0, 240, 255, 0.3);
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: var(--font-size-body);
+  color: var(--halo-text);
+  background-color: var(--halo-primary);
+  line-height: 1.6;
+}
+
+/* ============================================
+   Typography
+   ============================================ */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: var(--space-md);
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+}
+
+/* Mobile Typography */
+@media (max-width: 767px) {
+  h1 {
+    font-size: var(--font-size-h1-mobile);
+  }
+  
+  h2 {
+    font-size: var(--font-size-h2-mobile);
+  }
+  
+  h3 {
+    font-size: var(--font-size-h3-mobile);
+  }
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+@keyframes halo-pulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   Button Styles
+   ============================================ */
+.halo-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: var(--font-size-body);
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  border-radius: var(--radius-button);
+  border: 2px solid var(--halo-accent);
+  background-color: var(--halo-primary);
+  color: var(--halo-accent);
+  cursor: pointer;
+  transition: all var(--transition-speed) var(--transition-ease);
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.halo-btn:hover {
+  background-color: var(--halo-accent);
+  color: var(--halo-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow-blue);
+}
+
+.halo-btn:active {
+  transform: translateY(0);
+}
+
+.halo-btn--secondary {
+  background-color: transparent;
+  border-color: var(--halo-text);
+  color: var(--halo-text);
+}
+
+.halo-btn--secondary:hover {
+  background-color: var(--halo-text);
+  color: var(--halo-primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================
+   Card Styles
+   ============================================ */
+.halo-card {
+  background: var(--halo-primary);
+  border: 1px solid var(--halo-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-speed) var(--transition-ease);
+}
+
+.halo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover), var(--shadow-glow-blue);
+}
+
+.halo-card__image {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-card);
+  margin-bottom: var(--space-sm);
+}
+
+.halo-card__title {
+  font-size: var(--font-size-h3);
+  margin-bottom: var(--space-sm);
+}
+
+.halo-card__text {
+  font-size: var(--font-size-body);
+  color: #666;
+  margin-bottom: var(--space-md);
+}
+
+/* ============================================
+   Section: Hero Halo
+   ============================================ */
+.hero-halo {
+  position: relative;
+  padding: var(--space-xxl) var(--space-md);
+  background-color: var(--halo-primary);
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-halo__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-halo__glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: halo-pulse 3s ease-in-out infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-halo__heading {
+  font-size: var(--font-size-h1);
+  margin-bottom: var(--space-sm);
+  font-weight: 700;
+}
+
+.hero-halo__subheading {
+  font-size: var(--font-size-h2);
+  color: #666;
+  margin-bottom: var(--space-lg);
+  font-weight: 400;
+}
+
+.hero-halo__buttons {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 767px) {
+  .hero-halo {
+    padding: var(--space-xl) var(--space-sm);
+  }
+  
+  .hero-halo__glow {
+    width: 250px;
+    height: 250px;
+  }
+  
+  .hero-halo__buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .hero-halo__buttons .halo-btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+/* ============================================
+   Section: Category Grid
+   ============================================ */
+.category-grid {
+  padding: var(--space-xxl) var(--space-md);
+  background-color: var(--halo-secondary);
+}
+
+.category-grid__container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.category-grid__heading {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.category-grid__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+}
+
+@media (max-width: 767px) {
+  .category-grid__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Category Card Styles */
+.category-card {
+  background: var(--halo-primary);
+  border: 1px solid var(--halo-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-lg);
+  text-align: center;
+  text-decoration: none;
+  color: var(--halo-text);
+  display: block;
+  transition: all var(--transition-speed) var(--transition-ease);
+  box-shadow: var(--shadow-card);
+}
+
+.category-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover), var(--shadow-glow-blue);
+  text-decoration: none;
+}
+
+.category-card__icon {
+  font-size: 48px;
+  margin-bottom: var(--space-sm);
+  display: block;
+}
+
+.category-card__title {
+  font-size: var(--font-size-h3);
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+}
+
+.category-card__tagline {
+  font-size: var(--font-size-body);
+  color: #666;
+}
+
+/* ============================================
+   Section: Featured Products
+   ============================================ */
+.featured-products {
+  padding: var(--space-xxl) var(--space-md);
+  background-color: var(--halo-primary);
+}
+
+.featured-products__container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.featured-products__heading {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.featured-products__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--space-md);
+}
+
+@media (max-width: 767px) {
+  .featured-products__grid {
+    grid-template-columns: 1fr;
+    overflow-x: auto;
+    display: flex;
+    gap: var(--space-sm);
+    padding-bottom: var(--space-sm);
+  }
+  
+  .featured-products__grid .product-card {
+    min-width: 250px;
+    flex-shrink: 0;
+  }
+}
+
+/* Product Card Styles */
+.product-card {
+  background: var(--halo-primary);
+  border: 1px solid var(--halo-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-md);
+  text-decoration: none;
+  color: var(--halo-text);
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-speed) var(--transition-ease);
+  box-shadow: var(--shadow-card);
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+  text-decoration: none;
+}
+
+.product-card__image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: var(--radius-card);
+  margin-bottom: var(--space-sm);
+  background-color: var(--halo-secondary);
+}
+
+.product-card__title {
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+}
+
+.product-card__price {
+  font-size: var(--font-size-h3);
+  font-weight: 700;
+  color: var(--halo-accent);
+  margin-bottom: var(--space-sm);
+}
+
+.product-card__button {
+  margin-top: auto;
+}
+
+/* ============================================
+   Section: Halo Protocol
+   ============================================ */
+.halo-protocol {
+  padding: var(--space-xxl) var(--space-md);
+  background-color: var(--halo-secondary);
+}
+
+.halo-protocol__container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.halo-protocol__heading {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.halo-protocol__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+@media (max-width: 767px) {
+  .halo-protocol__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.halo-protocol__item {
+  text-align: center;
+  padding: var(--space-md);
+}
+
+.halo-protocol__icon {
+  font-size: 64px;
+  margin-bottom: var(--space-sm);
+  display: block;
+}
+
+.halo-protocol__title {
+  font-size: var(--font-size-h3);
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+}
+
+.halo-protocol__text {
+  font-size: var(--font-size-body);
+  color: #666;
+}
+
+/* ============================================
+   Section: Trust Badges
+   ============================================ */
+.trust-badges {
+  padding: var(--space-lg) var(--space-md);
+  background-color: var(--halo-primary);
+  border-top: 1px solid var(--halo-border);
+  border-bottom: 1px solid var(--halo-border);
+}
+
+.trust-badges__container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.trust-badges__grid {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.trust-badges__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--font-size-small);
+  color: #666;
+}
+
+.trust-badges__icon {
+  font-size: 24px;
+  color: var(--halo-accent);
+}
+
+@media (max-width: 767px) {
+  .trust-badges__grid {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ============================================
+   Template: Custom Product
+   ============================================ */
+.product-custom {
+  padding: var(--space-xl) var(--space-md);
+}
+
+.product-custom__container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.product-custom__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  margin-bottom: var(--space-xl);
+}
+
+@media (max-width: 767px) {
+  .product-custom__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.product-custom__tabs {
+  border-top: 1px solid var(--halo-border);
+  padding-top: var(--space-lg);
+}
+
+.product-custom__tab-buttons {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.product-custom__tab-button {
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--halo-border);
+  background: var(--halo-primary);
+  border-radius: var(--radius-button);
+  cursor: pointer;
+  transition: all var(--transition-speed) var(--transition-ease);
+}
+
+.product-custom__tab-button:hover,
+.product-custom__tab-button--active {
+  background: var(--halo-accent);
+  color: var(--halo-primary);
+  border-color: var(--halo-accent);
+}
+
+.product-custom__tab-content {
+  display: none;
+  padding: var(--space-md);
+  background: var(--halo-secondary);
+  border-radius: var(--radius-card);
+}
+
+.product-custom__tab-content--active {
+  display: block;
+  animation: fade-in-up 0.3s ease;
+}
+
+.product-custom__disclaimer {
+  background: #FFF3CD;
+  border: 2px solid #FFC107;
+  border-radius: var(--radius-card);
+  padding: var(--space-md);
+  margin-top: var(--space-lg);
+  text-align: center;
+}
+
+.product-custom__disclaimer-title {
+  font-size: var(--font-size-h3);
+  font-weight: 700;
+  color: #856404;
+  margin-bottom: var(--space-xs);
+}
+
+.product-custom__disclaimer-text {
+  font-size: var(--font-size-small);
+  color: #856404;
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+.text-center {
+  text-align: center;
+}
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: var(--space-xs); }
+.mb-2 { margin-bottom: var(--space-sm); }
+.mb-3 { margin-bottom: var(--space-md); }
+.mb-4 { margin-bottom: var(--space-lg); }
+.mb-5 { margin-bottom: var(--space-xl); }
+
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: var(--space-xs); }
+.mt-2 { margin-top: var(--space-sm); }
+.mt-3 { margin-top: var(--space-md); }
+.mt-4 { margin-top: var(--space-lg); }
+.mt-5 { margin-top: var(--space-xl); }
+
+/* ============================================
+   Accessibility
+   ============================================ */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Focus styles for keyboard navigation */
+a:focus,
+button:focus,
+.halo-btn:focus {
+  outline: 2px solid var(--halo-accent);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   Responsive Breakpoints
+   ============================================ */
+/* Mobile: < 768px (default, mobile-first) */
+/* Tablet: 768px - 1024px */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .hero-halo__glow {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+/* Desktop: > 1024px */
+@media (min-width: 1025px) {
+  .hero-halo__glow {
+    width: 500px;
+    height: 500px;
+  }
+}

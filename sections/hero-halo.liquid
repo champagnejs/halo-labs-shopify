@@ -1,0 +1,85 @@
+{% comment %}
+  Hero Halo Section
+  Large hero banner with animated halo effect and CTAs
+{% endcomment %}
+
+{{ 'halo-custom.css' | asset_url | stylesheet_tag }}
+
+<section class="hero-halo">
+  <div class="hero-halo__glow"></div>
+  
+  <div class="hero-halo__container">
+    <h1 class="hero-halo__heading">{{ section.settings.heading }}</h1>
+    
+    <p class="hero-halo__subheading">{{ section.settings.subheading }}</p>
+    
+    <div class="hero-halo__buttons">
+      {% if section.settings.button_1_text != blank %}
+        <a 
+          href="{{ section.settings.button_1_link }}" 
+          class="halo-btn"
+          {% if section.settings.button_1_link == blank %}aria-disabled="true"{% endif %}
+        >
+          {{ section.settings.button_1_text }}
+        </a>
+      {% endif %}
+      
+      {% if section.settings.button_2_text != blank %}
+        <a 
+          href="{{ section.settings.button_2_link }}" 
+          class="halo-btn halo-btn--secondary"
+          {% if section.settings.button_2_link == blank %}aria-disabled="true"{% endif %}
+        >
+          {{ section.settings.button_2_text }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Halo",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Build Your Halo"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Premium Research Compounds for Peak Performance"
+    },
+    {
+      "type": "text",
+      "id": "button_1_text",
+      "label": "Primary Button Text",
+      "default": "Shop Collections"
+    },
+    {
+      "type": "url",
+      "id": "button_1_link",
+      "label": "Primary Button Link"
+    },
+    {
+      "type": "text",
+      "id": "button_2_text",
+      "label": "Secondary Button Text",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "button_2_link",
+      "label": "Secondary Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Halo"
+    }
+  ]
+}
+{% endschema %}
